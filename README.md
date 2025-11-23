@@ -34,3 +34,9 @@ Nadir sınıf **reset-both**, dengesizliği azaltmak için *deny* ile birleştir
    ```bash
    python src/train.py
 
+##  Amaç
+Ağ trafiği özelliklerinden firewall aksiyonunu otomatik sınıflandırmak.
+
+
+
+
