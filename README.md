@@ -31,5 +31,6 @@ Nadir sınıf **reset-both**, dengesizliği azaltmak için *deny* ile birleştir
    ```bash
    pip install -r requirements.txt
 3. Eğitimi çalıştır:
-   `python src/train.py`
+   ```bash
+   python src/train.py
 
