@@ -207,3 +207,52 @@ targets = np.concatenate(targets)
 
 print("\nClassification Report:")
 print(classification_report(targets, preds, target_names=label_encoder.classes_))
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+import os
+os.makedirs("results", exist_ok=True)
+
+# ============= 
+#TRAIN/VAL CURVES (LOSS + F1) 
+#=============
+epochs_range = range(1, EPOCHS + 1)
+
+plt.figure(figsize=(8,5))
+plt.plot(epochs_range, train_losses, label="Train Loss")
+plt.plot(epochs_range, val_losses, label="Val Loss")
+plt.xlabel("Epoch")
+plt.ylabel("Loss")
+plt.title("Train vs Val Loss")
+plt.legend()
+plt.savefig("results/train_val_loss.png", dpi=300, bbox_inches="tight")
+plt.close()
+
+plt.figure(figsize=(8,5))
+plt.plot(epochs_range, train_f1_list, label="Train F1")
+plt.plot(epochs_range, val_f1_list, label="Val F1")
+plt.xlabel("Epoch")
+plt.ylabel("F1 Score")
+plt.title("Train vs Val F1")
+plt.legend()
+plt.savefig("results/train_val_f1.png", dpi=300, bbox_inches="tight")
+plt.close()
+
+# ============= 
+#CONFUSION MATRIX 
+#=============
+from sklearn.metrics import confusion_matrix
+
+cm = confusion_matrix(targets, preds)
+plt.figure(figsize=(6,5))
+sns.heatmap(cm, annot=True, fmt="d", cmap="Blues",
+            xticklabels=label_encoder.classes_,
+            yticklabels=label_encoder.classes_)
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.title("Confusion Matrix")
+plt.savefig("results/confusion_matrix.png", dpi=300, bbox_inches="tight")
+plt.close()
+
+print("\nSaved all result plots to 'results/' folder.")
