@@ -1,0 +1,8 @@
+import os
+
+os.makedirs("models", exist_ok=True)  # klasör yoksa oluştur
+
+# val F1 en yüksek olduğunda kaydet
+if best_state is not None:
+    torch.save(best_state, "models/best_model.pth")
+    print("En iyi model kaydedildi: models/best_model.pth")
